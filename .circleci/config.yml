@@ -5,8 +5,9 @@ jobs:
       - image: mcr.microsoft.com/dotnet/sdk:6.0-alpine
     steps:
       - checkout
-      - run: cat /etc/resolv.conf  
-      - run: sed -i 's/nameserver 127.0.0.11/nameserver 8.8.8.8/' /etc/resolv.conf
+      - run: cp /etc/resolv.conf ~/resolv.conf
+      - run: sed -i 's/nameserver 127.0.0.11/nameserver 8.8.8.8/g' ~/resolv.conf
+      - run: cp ~/resolv.conf /etc/resolv.conf
       - run: cat /etc/resolv.conf  
       - setup_remote_docker:
           version: 20.10.14
