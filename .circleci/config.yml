@@ -6,10 +6,7 @@ jobs:
     steps:
       - checkout
       - run: echo '152.199.40.167 api.nuget.org' >> /etc/hosts
-      - setup_remote_docker
-      # build and push Docker image
-      - run: apt-get update
-      - run: apt-get install -y dnsutils 
+      - run: apk add --no-cache bind-tools
       - run: nslookup api.nuget.org
       - run: dig api.nuget.org
  
